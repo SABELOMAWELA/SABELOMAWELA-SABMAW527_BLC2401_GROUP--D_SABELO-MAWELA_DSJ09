@@ -51,9 +51,22 @@ body {
 .footer {
     width: 100%;
     background-color: lightcoral;
-    position:absolute;
-    bottom:0;
     text-align: center;
     padding: 30px;
     color: white;
+}
+
+.review-card {
+    padding: 10px;
+}
+
+.reviews {
+    display: flex;
+    padding: 10px;
+}
+
+.break {
+    height: 1px;
+    width: 90%;
+    background-color: coral;
 }
