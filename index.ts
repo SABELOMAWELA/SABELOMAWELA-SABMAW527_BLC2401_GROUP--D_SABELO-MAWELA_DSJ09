@@ -1,5 +1,7 @@
 import { showReviewTotal, populateUser } from './utils'
 import { Permissions, LoyaltyUser } from './enums'
+import { Price, Country } from './types'
+
 const propertyContainer = document.querySelector('.properties')as HTMLElement
 const footer = document.querySelector('.footer') as HTMLElement
 
@@ -36,8 +38,7 @@ const you = {
     age: 35,
     stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
 }
- 
-type Price = 45| 30 | 25
+
 // Array of Properties
 const properties : {
     image: string;
@@ -47,7 +48,7 @@ const properties : {
         firstLine: string;
         city: string;
         code: number;
-        country: string;
+        country: Country;
     };
     contact: [ number, string ];
     isAvailable: boolean;
