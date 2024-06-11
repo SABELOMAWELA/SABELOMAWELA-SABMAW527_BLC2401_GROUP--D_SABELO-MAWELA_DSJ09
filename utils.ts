@@ -1,6 +1,6 @@
-const reviewTotalDisplay = document.querySelector('#reviews') as HTMLElement
-const returningUserDisplay = document.querySelector('#returning-user') as HTMLElement
-const userNameDisplay = document.querySelector('#user') as HTMLElement
+const reviewTotalDisplay = document.querySelector('#reviews')as HTMLElement
+const returningUserDisplay = document.querySelector('#returning-user')as HTMLElement
+const userNameDisplay = document.querySelector('#user')as HTMLElement
 import { LoyaltyUser, Permissions } from './enums'
 import  Review  from './interfaces'
 
@@ -16,7 +16,7 @@ export function populateUser(isReturning : boolean, userName: string ) {
     userNameDisplay.innerHTML = userName
 }
 
-export function showDetails(value: boolean | Permissions | string, element : HTMLDivElement, price: number) {
+export function showDetails(value: boolean | Permissions, element : HTMLDivElement, price: number) {
     if (value) {
         const priceDisplay = document.createElement('div')
         priceDisplay.innerHTML = price.toString() + '/night'

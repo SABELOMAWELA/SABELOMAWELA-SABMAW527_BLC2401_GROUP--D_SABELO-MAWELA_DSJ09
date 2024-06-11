@@ -1,15 +1,19 @@
 // Wrapping up our Dashboard
-// 1. Create All the other interfaces you think are needed for this board
-// 2. Using the Class, visually show the main Image above the review button.
+// Style the 'Get Reviews' Button
+// Make the button green
+// Make the text white
+// Give the button a 5px border radius
+// Make the button turn yellow on hover
+
 import { showReviewTotal, populateUser, showDetails, getTopTwoReviews} from './utils'
 import { Price, Country } from './types'
 import { Permissions , LoyaltyUser } from './enums'
 import  Review  from './interfaces'
 const propertyContainer = document.querySelector('.properties') as HTMLElement
-const reviewContainer = document.querySelector('.reviews') as HTMLElement
-const container = document.querySelector('.container') as HTMLElement
-const button = document.querySelector('button') as HTMLElement
-const footer = document.querySelector('.footer') as HTMLElement
+const reviewContainer = document.querySelector('.reviews')as HTMLElement
+const container = document.querySelector('.container')as HTMLElement
+const button = document.querySelector('button')as HTMLElement
+const footer = document.querySelector('.footer')as HTMLElement
 
 let isLoggedIn: boolean
 
@@ -116,6 +120,19 @@ const properties : Property[] = [
         },
         contact: [+34829374892553, 'andyluger@aol.com'],
         isAvailable: true
+    },
+    {
+        image: 'images/malaysian-hotel.jpeg',
+        title: 'Malia Hotel',
+        price: 35,
+        location: {
+            firstLine: 'Room 4',
+            city: 'Malia',
+            code: 45334,
+            country: 'Malaysia'
+        },
+        contact: [ +60349822083, 'lee34@gmail.com'],
+        isAvailable: false
     }
 ]
 
