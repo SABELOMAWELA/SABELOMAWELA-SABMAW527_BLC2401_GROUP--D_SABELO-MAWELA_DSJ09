@@ -1,31 +1,24 @@
+// Classes
+// As with other JavaScript language features, TypeScript adds type
+// annotations and other syntax to allow you to express relationships 
+// between classes and other types.
+// 1. Add a Class that will let us create a main image, it should allow us to 
+// store the reviews, the src and title.
+
 import { showReviewTotal, populateUser, showDetails, getTopTwoReviews} from './utils'
-import { Price, Country} from './types'
+import { Price, Country } from './types'
+import { Permissions , LoyaltyUser } from './enums'
+import Review from './interfaces'
 const propertyContainer = document.querySelector('.properties') as HTMLElement
-const reviewContainer = document.querySelector('.reviews')as HTMLElement
-const container = document.querySelector('.container')as HTMLElement
-const button = document.querySelector('button')as HTMLElement
-const footer = document.querySelector('.footer')as HTMLElement
+const reviewContainer = document.querySelector('.reviews') as HTMLElement
+const container = document.querySelector('.container')  as HTMLElement
+const button = document.querySelector('button') as HTMLElement
+const footer = document.querySelector('.footer') as HTMLElement
 
 let isLoggedIn: boolean
 
-enum Permissions {
-    ADMIN = 'ADMIN', 
-    READ_ONLY = 'READ_ONLY'
-}
-
-enum LoyaltyUser {
-    GOLD_USER = 'GOLD_USER',
-    SILVER_USER = 'SILVER_USER',
-    BRONZE_USER = 'BRONZE_USER'
-}
-
 // Reviews
-const reviews: { 
-    name: string; 
-    stars: number;
-    loyaltyUser: LoyaltyUser; 
-    date: string; 
-    }[] = [
+const reviews: Review[] = [
     {
         name: 'Sheia',
         stars: 5,
@@ -128,7 +121,7 @@ for (let i = 0; i < properties.length; i++) {
 }
 
 let count = 0
-function addReviews(array : { name: string; stars: number; loyaltyUser: LoyaltyUser; date: string; }[]) : void {
+function addReviews(array : Review[]) : void {
     if (!count ) {
         count++
         const topTwo = getTopTwoReviews(array)
@@ -146,3 +139,26 @@ button.addEventListener('click', () => addReviews(reviews))
 
 let currentLocation : [string, string, number] = ['London', '11.03', 17]
 footer.innerHTML = currentLocation[0] + ' ' + currentLocation[1] + ' ' + currentLocation[2] + '°'
+
+//Classes
+// class Car {
+//     make: string
+//     year: number
+//     color: string
+//     constructor(make: string, year: number, color: string) {
+//         this.make = make
+//         this.year = year
+//         this.color = color
+//     }
+// }
+
+class MainProperty {
+    src: string
+    title: string
+    reviews: Review[]
+    constructor(src, title, reviews) {
+        this.src = src
+        this.title = title
+        this.reviews = reviews
+    }
+}
