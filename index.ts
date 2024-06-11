@@ -3,15 +3,10 @@ import { Permissions, LoyaltyUser } from './enums'
 const propertyContainer = document.querySelector('.properties')as HTMLElement
 const footer = document.querySelector('.footer') as HTMLElement
 
-let isOpen: boolean
+let isLoggedIn: boolean
 
 // Reviews
-const reviews : { 
-    name: string; 
-    stars: number; 
-    loyaltyUser: LoyaltyUser; 
-    date: string
-    }[] = [
+const reviews : any[] = [
     {
         name: 'Sheia',
         stars: 5,
@@ -28,7 +23,8 @@ const reviews : {
         name: 'Omar',
         stars: 4,
         loyaltyUser: LoyaltyUser.SILVER_USER,
-        date: '27-03-2021'
+        date: '27-03-2021',
+        description: 'Great hosts, location was a bit further than said.'
     },
 ]
 
@@ -40,7 +36,8 @@ const you = {
     age: 35,
     stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
 }
-
+ 
+type Price = 45| 30 | 25
 // Array of Properties
 const properties : {
     image: string;
@@ -56,7 +53,7 @@ const properties : {
     isAvailable: boolean;
 }[] = [
     {
-        image: './images/colombia-property.jpg',
+        image: 'images/colombia-property.jpg',
         title: 'Colombian Shack',
         price: 45,
         location: {
@@ -69,7 +66,7 @@ const properties : {
         isAvailable: true  
     },
     {
-        image: './images/poland-property.jpg',
+        image: 'images/poland-property.jpg',
         title: 'Polish Cottage',
         price: 34,
         location: {
@@ -82,7 +79,7 @@ const properties : {
         isAvailable: false 
     },
     {
-        image: './images/london-property.jpg',
+        image: 'images/london-property.jpg',
         title: 'London Flat',
         price: 23,
         location: {
@@ -97,9 +94,21 @@ const properties : {
 ]
 
 // Functions
-showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser)
-
+showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser),
 populateUser(you.isReturning, you.firstName)
+
+
+let authorityStatus : any
+
+isLoggedIn = true
+
+function showDetails(authorityStatus: boolean | Permissions, element : HTMLDivElement, price: number) {
+   if (authorityStatus) {
+       const priceDisplay = document.createElement('div')
+       priceDisplay.innerHTML = price.toString() + '/night'
+       element.appendChild(priceDisplay)
+   }
+}
 
 // Add the properties
 for (let i = 0; i < properties.length; i++) {
@@ -110,6 +119,7 @@ for (let i = 0; i < properties.length; i++) {
     image.setAttribute('src', properties[i].image)
     card.appendChild(image)
     propertyContainer.appendChild(card)
+    showDetails(you.permissions, card, properties[i].price)
 }
 
 let currentLocation : [string, string, number] = ['London', '11.03', 17]
